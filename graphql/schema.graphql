@@ -1,0 +1,498 @@
+directive @embedded on OBJECT
+directive @collection(name: String!) on OBJECT
+directive @index(name: String!) on FIELD_DEFINITION
+directive @resolver(
+  name: String
+  paginated: Boolean! = false
+) on FIELD_DEFINITION
+directive @relation(name: String) on FIELD_DEFINITION
+directive @unique(index: String) on FIELD_DEFINITION
+type Brand {
+  # The document's ID.
+  _id: ID!
+  # The document's timestamp.
+  _ts: Long!
+  id: ID!
+  brandName: String!
+}
+
+# 'Brand' input values
+input BrandInput {
+  id: ID!
+  brandName: String!
+}
+
+type CableMobile {
+  # The document's ID.
+  _id: ID!
+  # The document's timestamp.
+  _ts: Long!
+  id: String!
+}
+
+# 'CableMobile' input values
+input CableMobileInput {
+  id: String!
+}
+
+type Country {
+  # The document's ID.
+  _id: ID!
+  # The document's timestamp.
+  _ts: Long!
+  id: ID!
+  countryName: String!
+}
+
+# 'Country' input values
+input CountryInput {
+  id: ID!
+  countryName: String!
+}
+
+type CountryNetwork {
+  # The document's ID.
+  _id: ID!
+  # The document's timestamp.
+  _ts: Long!
+  countryID: ID!
+  networkID: ID!
+}
+
+# 'CountryNetwork' input values
+input CountryNetworkInput {
+  countryID: ID!
+  networkID: ID!
+}
+
+scalar Date
+
+type Group {
+  # The document's ID.
+  _id: ID!
+  # The document's timestamp.
+  _ts: Long!
+  id: ID!
+  groupName: String!
+}
+
+# 'Group' input values
+input GroupInput {
+  id: ID!
+  groupName: String!
+}
+
+# The `Long` scalar type
+ represents non-fractional signed whole numeric values.
+# Long can represent values between -(2^63) and 2^63 - 1.
+scalar Long
+
+type Mutation {
+  # Update an existing document in the collection of 'User'
+  updateUser(
+    # The 'User' document's ID
+    id: ID!
+    # 'User' input values
+    data: UserInput!
+  ): User
+  # Create a new document in the collection of 'User'
+  createUser(
+    # 'User' input values
+    data: UserInput!
+  ): User!
+  # Update an existing document in the collection of 'Brand'
+  updateBrand(
+    # The 'Brand' document's ID
+    id: ID!
+    # 'Brand' input values
+    data: BrandInput!
+  ): Brand
+  # Create a new document in the collection of 'CableMobile'
+  createCableMobile(
+    # 'CableMobile' input values
+    data: CableMobileInput!
+  ): CableMobile!
+  # Create a new document in the collection of 'Order'
+  createOrder(
+    # 'Order' input values
+    data: OrderInput!
+  ): Order!
+  # Delete an existing document in the collection of 'Order'
+  deleteOrder(
+    # The 'Order' document's ID
+    id: ID!
+  ): Order
+  # Update an existing document in the collection of 'Order'
+  updateOrder(
+    # The 'Order' document's ID
+    id: ID!
+    # 'Order' input values
+    data: OrderInput!
+  ): Order
+  # Delete an existing document in the collection of 'Tool'
+  deleteTool(
+    # The 'Tool' document's ID
+    id: ID!
+  ): Tool
+  # Delete an existing document in the collection of 'Country'
+  deleteCountry(
+    # The 'Country' document's ID
+    id: ID!
+  ): Country
+  # Update an existing document in the collection of 'Tool'
+  updateTool(
+    # The 'Tool' document's ID
+    id: ID!
+    # 'Tool' input values
+    data: ToolInput!
+  ): Tool
+  # Update an existing document in the collection of 'CableMobile'
+  updateCableMobile(
+    # The 'CableMobile' document's ID
+    id: ID!
+    # 'CableMobile' input values
+    data: CableMobileInput!
+  ): CableMobile
+  # Delete an existing document in the collection of 'CountryNetwork'
+  deleteCountryNetwork(
+    # The 'CountryNetwork' document's ID
+    id: ID!
+  ): CountryNetwork
+  # Create a new document in the collection of 'passwordReset'
+  createPasswordReset(
+    # 'passwordReset' input values
+    data: PasswordResetInput!
+  ): passwordReset!
+  # Create a new document in the collection of 'Group'
+  createGroup(
+    # 'Group' input values
+    data: GroupInput!
+  ): Group!
+  # Delete an existing document in the collection of 'Network'
+  deleteNetwork(
+    # The 'Network' document's ID
+    id: ID!
+  ): Network
+  # Delete an existing document in the collection of 'CableMobile'
+  deleteCableMobile(
+    # The 'CableMobile' document's ID
+    id: ID!
+  ): CableMobile
+  # Update an existing document in the collection of 'Group'
+  updateGroup(
+    # The 'Group' document's ID
+    id: ID!
+    # 'Group' input values
+    data: GroupInput!
+  ): Group
+  # Delete an existing document in the collection of 'passwordReset'
+  deletePasswordReset(
+    # The 'passwordReset' document's ID
+    id: ID!
+  ): passwordReset
+  # Delete an existing document in the collection of 'Brand'
+  deleteBrand(
+    # The 'Brand' document's ID
+    id: ID!
+  ): Brand
+  # Update an existing document in the collection of 'Country'
+  updateCountry(
+    # The 'Country' document's ID
+    id: ID!
+    # 'Country' input values
+    data: CountryInput!
+  ): Country
+  # Create a new document in the collection of 'Tool'
+  createTool(
+    # 'Tool' input values
+    data: ToolInput!
+  ): Tool!
+  # Create a new document in the collection of 'Country'
+  createCountry(
+    # 'Country' input values
+    data: CountryInput!
+  ): Country!
+  # Delete an existing document in the collection of 'User'
+  deleteUser(
+    # The 'User' document's ID
+    id: ID!
+  ): User
+  # Delete an existing document in the collection of 'Group'
+  deleteGroup(
+    # The 'Group' document's ID
+    id: ID!
+  ): Group
+  # Update an existing document in the collection of 'CountryNetwork'
+  updateCountryNetwork(
+    # The 'CountryNetwork' document's ID
+    id: ID!
+    # 'CountryNetwork' input values
+    data: CountryNetworkInput!
+  ): CountryNetwork
+  # Create a new document in the collection of 'CountryNetwork'
+  createCountryNetwork(
+    # 'CountryNetwork' input values
+    data: CountryNetworkInput!
+  ): CountryNetwork!
+  # Update an existing document in the collection of 'Network'
+  updateNetwork(
+    # The 'Network' document's ID
+    id: ID!
+    # 'Network' input values
+    data: NetworkInput!
+  ): Network
+  # Create a new document in the collection of 'Network'
+  createNetwork(
+    # 'Network' input values
+    data: NetworkInput!
+  ): Network!
+  # Create a new document in the collection of 'Brand'
+  createBrand(
+    # 'Brand' input values
+    data: BrandInput!
+  ): Brand!
+  # Update an existing document in the collection of 'passwordReset'
+  updatePasswordReset(
+    # The 'passwordReset' document's ID
+    id: ID!
+    # 'passwordReset' input values
+    data: PasswordResetInput!
+  ): passwordReset
+}
+
+type Network {
+  # The document's ID.
+  _id: ID!
+  # The document's timestamp.
+  _ts: Long!
+  id: ID!
+  networkName: String!
+}
+
+# 'Network' input values
+input NetworkInput {
+  id: ID!
+  networkName: String!
+}
+
+type Order {
+  unlockBaseId: ID!
+  network: String!
+  name: String!
+  email: String!
+  model: String!
+  tool: String!
+  # The document's ID.
+  _id: ID!
+  price: Float!
+  credits: Float!
+  country: String!
+  user_id: User
+  codes: String
+  status: String!
+  IMEI: String!
+  chargeId: ID!
+  type: String!
+  phone: String
+  # The document's timestamp.
+  _ts: Long!
+}
+
+# 'Order' input values
+input OrderInput {
+  chargeId: ID!
+  unlockBaseId: ID!
+  name: String!
+  email: String!
+  phone: String
+  type: String!
+  country: String!
+  network: String!
+  tool: String!
+  credits: Float!
+  price: Float!
+  IMEI: String!
+  model: String!
+  status: String!
+  codes: String
+  user_id: OrderUser_idRelation
+}
+
+# Allow manipulating the relationship between the types 'Order' and 'User' using the field 'Order.user_id'.
+input OrderUser_idRelation {
+  # Create a document of type 'User' and associate it with the current document.
+  create: UserInput
+  # Connect a document of type 'User' with the current document using its ID.
+  connect: ID
+  # If true, disconnects this document from 'User'
+  disconnect: Boolean
+}
+
+type passwordReset {
+  # The document's ID.
+  _id: ID!
+  # The document's timestamp.
+  _ts: Long!
+  email: String!
+  token: String!
+}
+
+# 'passwordReset' input values
+input PasswordResetInput {
+  email: String!
+  token: String!
+}
+
+type Query {
+  # Find a document from the collection of 'Group' by its id.
+  findGroupByID(
+    # The 'Group' document's ID
+    id: ID!
+  ): Group
+  # Find a document from the collection of 'CableMobile' by its id.
+  findCableMobileByID(
+    # The 'CableMobile' document's ID
+    id: ID!
+  ): CableMobile
+  # Find a document from the collection of 'CountryNetwork' by its id.
+  findCountryNetworkByID(
+    # The 'CountryNetwork' document's ID
+    id: ID!
+  ): CountryNetwork
+  # Find a document from the collection of 'Order' by its id.
+  findOrderByID(
+    # The 'Order' document's ID
+    id: ID!
+  ): Order
+  # Find a document from the collection of 'Tool' by its id.
+  findToolByID(
+    # The 'Tool' document's ID
+    id: ID!
+  ): Tool
+  # Find a document from the collection of 'User' by its id.
+  findUserByID(
+    # The 'User' document's ID
+    id: ID!
+  ): User
+  # Find a document from the collection of 'passwordReset' by its id.
+  findPasswordResetByID(
+    # The 'passwordReset' document's ID
+    id: ID!
+  ): passwordReset
+  # Find a document from the collection of 'Country' by its id.
+  findCountryByID(
+    # The 'Country' document's ID
+    id: ID!
+  ): Country
+  # Find a document from the collection of 'Brand' by its id.
+  findBrandByID(
+    # The 'Brand' document's ID
+    id: ID!
+  ): Brand
+  # Find a document from the collection of 'Network' by its id.
+  findNetworkByID(
+    # The 'Network' document's ID
+    id: ID!
+  ): Network
+}
+
+scalar Time
+
+type Tool {
+  toolCredits: Float!
+  toolDeliveryUnit: String!
+  toolRequiresNetwork: String!
+  provider: String!
+  toolRequiresSN: String!
+  # The document's ID.
+  _id: ID!
+  toolRequiresICloudPhone: String!
+  toolRequiresICloudUDID: String!
+  toolDeliveryMax: Int!
+  groupID: Group
+  toolRequiresKBH: String!
+  toolMessage: String
+  toolRequiresPRD: String!
+  toolRequiresServiceTag: String!
+  toolRequiresLocks: Int!
+  toolDeliveryMin: Int!
+  toolRequiresPin: String!
+  toolRequiresMEP: String!
+  toolSMS: String!
+  toolRequiresICloudEmail: String!
+  toolName: String!
+  toolRequiresType: String!
+  toolRequiresSecRO: String!
+  active: Boolean!
+  toolRequiresMobile: String!
+  toolRequiresProvider: String!
+  # The document's timestamp.
+  _ts: Long!
+}
+
+# Allow manipulating the relationship between the types 'Tool' and 'Group' using the field 'Tool.groupID'.
+input ToolGroupIDRelation {
+  # Create a document of type 'Group' and associate it with the current document.
+  create: GroupInput
+  # Connect a document of type 'Group' with the current document using its ID.
+  connect: ID
+  # If true, disconnects this document from 'Group'
+  disconnect: Boolean
+}
+
+# 'Tool' input values
+input ToolInput {
+  provider: String!
+  active: Boolean!
+  toolName: String!
+  toolCredits: Float!
+  toolSMS: String!
+  toolMessage: String
+  toolDeliveryMin: Int!
+  toolDeliveryMax: Int!
+  toolDeliveryUnit: String!
+  toolRequiresNetwork: String!
+  toolRequiresMobile: String!
+  toolRequiresProvider: String!
+  toolRequiresPin: String!
+  toolRequiresType: String!
+  toolRequiresKBH: String!
+  toolRequiresMEP: String!
+  toolRequiresPRD: String!
+  toolRequiresLocks: Int!
+  toolRequiresSN: String!
+  toolRequiresSecRO: String!
+  toolRequiresServiceTag: String!
+  toolRequiresICloudEmail: String!
+  toolRequiresICloudPhone: String!
+  toolRequiresICloudUDID: String!
+  groupID: ToolGroupIDRelation
+}
+
+type User {
+  email: String!
+  username: String!
+  # The document's ID.
+  _id: ID!
+  email_verified_at: String
+  id: String!
+  rememberToken: String
+  stripe_id: String
+  type: String!
+  password: String!
+  # The document's timestamp.
+  _ts: Long!
+}
+
+# 'User' input values
+input UserInput {
+  id: String!
+  username: String!
+  email: String!
+  email_verified_at: String
+  password: String!
+  type: String!
+  stripe_id: String
+  rememberToken: String
+}
+
